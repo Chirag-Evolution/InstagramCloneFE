@@ -1,0 +1,17 @@
+ol {
+    list-style-type: none;
+    display: inline;
+}
+li{
+    display: inline;
+    margin:0px 20px; 
+    text-decoration: none;
+}
+img{
+    height: auto;
+    width: 100px;
+
+}
+li:hover{
+    color:skyblue;
+}

@@ -1,0 +1,103 @@
+/* General layout for profile page */
+.profile-page {
+  font-family: "Poppins", sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fafafa;
+}
+
+/* Profile Header Styling */
+.profile-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.profile-pic {
+  margin-right: 20px;
+}
+
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.username {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.stat {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.stat strong {
+  font-weight: 700;
+}
+
+.edit-profile-btn {
+  padding: 8px 20px;
+  background-color: #0095f6;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.edit-profile-btn:hover {
+  background-color: #007bbf;
+}
+
+/* Bio section */
+.profile-bio {
+  margin-bottom: 30px;
+}
+
+.bio {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Posts Grid Section */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.post {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.post-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}

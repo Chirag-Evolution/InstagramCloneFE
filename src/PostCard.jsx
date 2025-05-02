@@ -9,7 +9,7 @@ const PostCard = ({ posts }) => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [comment, setComment] = useState("");
   const [showCommentsModal, setShowCommentsModal] = useState(false);
-  const id = user._id;
+  const id = user.id;
   console.log(id);
 
   const saveComment = (e, id) => {
@@ -78,8 +78,8 @@ const PostCard = ({ posts }) => {
             className="rounded-circle"
             style={{ width: "50px", height: "40px" }}
           />
-          <Link to={`/profile/${posts.postedby._id}`}>
-            {posts.postedby.name}
+          <Link to={`/profile/${posts?.postedby?._id}`}>
+            {posts.postedby?.name}
           </Link>
         </h5>
       </div>
@@ -89,7 +89,7 @@ const PostCard = ({ posts }) => {
 
       {/* Content */}
       <div className="card-body">
-        {posts.likes.includes(id) ? (
+        {posts.likes?.includes(id) ? (
           <span
             className="material-icons me-3"
             role="button"
@@ -112,14 +112,14 @@ const PostCard = ({ posts }) => {
         )}
 
         <p className="mb-1">
-          <strong>{posts.likes.length} likes</strong>
+          <strong>{posts.likes?.length} likes</strong>
         </p>
         <p> {posts.body}</p>
         <p
           className="text-sm text-blue-500 cursor-pointer"
           onClick={() => setShowCommentsModal(true)}
         >
-          View all {posts.comments.length} comments
+          View all {posts.comments?.length} comments
         </p>
       </div>
 

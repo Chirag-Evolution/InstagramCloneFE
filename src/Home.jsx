@@ -30,7 +30,7 @@ export default function Home() {
           {postData.map((posts) => {
             return (
               <div
-                key={posts._id}
+                key={posts.id}
                 className="flex flex-col items-center space-y-4"
               >
                 <PostCard posts={posts}></PostCard>{" "}

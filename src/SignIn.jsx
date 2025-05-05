@@ -5,34 +5,59 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import { loginContext } from "./context/loginContext";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "./firebase";
 export default function SignIn() {
   const { setUserLogin } = useContext(loginContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    console.log("clicked");
     e.preventDefault();
-    const payload = { email, password };
-    axios
-      .post("http://localhost:3000/register/signin", payload)
-      .then((res) => {
-        console.log(res);
-        if (res.data.result) {
-          toast("Sign in Successfully");
-          setUserLogin(true);
-          localStorage.setItem("token", res.data.token);
-          localStorage.setItem("logged", res.data.result);
-          localStorage.setItem("user", JSON.stringify(res.data.user));
-          navigate("/home");
-          setEmail(""), setPassword("");
-        } else {
-          toast(res.data.msg);
-          setEmail(""), setPassword("");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // const payload = { email, password };
+    // axios
+    //   .post("http://localhost:3000/register/signin", payload)
+    //   .then((res) => {
+    //     console.log(res);
+    //     if (res.data.result) {
+    //       toast("Sign in Successfully");
+    //       setUserLogin(true);
+    //       localStorage.setItem("token", res.data.token);
+    //       localStorage.setItem("logged", res.data.result);
+    //       localStorage.setItem("user", JSON.stringify(res.data.user));
+    //       navigate("/home");
+    //       setEmail(""), setPassword("");
+    //     } else {
+    //       toast(res.data.msg);
+    //       setEmail(""), setPassword("");
+    //     }
+    // })
+    // .catch((err) => {
+    //   console.log(err);
+    // });
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      // 🔐 Get the Firebase Auth ID token
+      const token = await user.getIdToken();
+      localStorage.setItem("token", token); // Store Firebase token
+      localStorage.setItem("logged", true); // Store logged in status
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ uid: user.uid, email: user.email })
+      ); // Store user info
+      navigate("/home");
+      console.log("Logged in user:", userCredential.user);
+    } catch (error) {
+      console.error("Login error:", error.message);
+    }
   };
   return (
     <div className="container d-flex justify-content-center align-items-center mt-5">
